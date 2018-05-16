@@ -56,3 +56,4 @@ echo "Installing Ansible Service Broker: organisation=$registry_org, container r
 $__dirname/scripts/provision-ansible-service-broker.sh "$registry_username" "$registry_password" "$registry_org" true latest "$cluster_public_ip" nip.io ansible-service-broker
 
 oc login -u developer
+oc project myproject
