@@ -36,21 +36,34 @@ If the script is successful, The OpenShift console is available at [https://192.
 
 ## What Happens?
 
-The `up.sh` script is very basic. It essentially does the following:
+The `up.sh` script is very basic. It does the following:
 
 * executes `oc cluster up`
-* creates the Mobile Custom Resource Definition and appropriate roles
+* Creates the Mobile Custom Resource Definition and appropriate roles
 * Deploys the ansible service broker using [`./scripts/provision-ansible-service-broker.sh`](provision-ansible-service-broker)
 
-## Next Steps
+## Local Development of origin-web-console
 
 This script does not install a custom version of the origin-web-console. You will probably want run your own version for local development.
 
 Clone the [Aerogear fork](https://github.com/aerogear/origin-web-console) of the origin-web-console.
 
-```
+```bash
 git clone git@github.com:aerogear/origin-web-console
 ```
 
-Open `app/config.js` in the origin-web-console and updatethe `masterPublicHostname` variable to `'192.168.99.100:8443'`. This allows your local version of the web console to talk to the openshift cluster.
+Open `app/config.js` in the origin-web-console and update the `masterPublicHostname` variable to `'192.168.99.100:8443'`. This allows your local version of the web console to talk to the openshift cluster.
 
+Now install the console's dependencies. (from within the origin-web-console directorys)
+
+```bash
+./hack/install-deps.sh
+```
+
+Now run the console.
+
+```
+grunt serve
+```
+
+Please consult the [origin-web-console Readme](https://github.com/openshift/origin-web-console) for more info.
