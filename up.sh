@@ -26,13 +26,14 @@ if [ "$registry_username" == "" ] || [ "$registry_password" == "" ]; then
   exit 1
 fi
 
-
-oc cluster up \
+if [ ! "$skip_oc_cluster_up" == "true" ]; then
+  oc cluster up \
   --service-catalog="$service_catalog" \
   --routing-suffix="$cluster_public_ip.nip.io" \
   --public-hostname="$cluster_public_ip" \
   --version="$cluster_version" \
   --image="$cluster_image"
+fi
 
 ## Setup the developer user with the right permissions
 
