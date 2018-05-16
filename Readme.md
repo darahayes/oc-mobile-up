@@ -79,7 +79,7 @@ export skip_oc_cluster_up=true
 
 ## Troubleshooting
 
-### Docker version on mac
+### Docker version on Mac OS
 
-`oc cluster up` command require specific version of docker that is not compatible with latest docker available on mac
-Mac users can get Docker 17 version from here: https://gist.github.com/franklinyu/5e0bb9d6c0d873f33c78415dd2ea4138
+`oc cluster up` command requires a specific version of docker that is not compatible with latest Docker available on Mac OS.
+Mac Os users can get Docker 17 version from here: https://gist.github.com/franklinyu/5e0bb9d6c0d873f33c78415dd2ea4138
