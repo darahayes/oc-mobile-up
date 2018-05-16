@@ -14,6 +14,7 @@ Befeore running this project you need to do the following:
 * [Install Docker](https://www.docker.com/community-edition)
 * [Create a Dockerhub Account](https://hub.docker.com/)
 * [Install v3.9.0 (or greater) of the OpenShift CLI tool](https://github.com/openshift/origin/releases/tag/v3.9.0)
+* [Refer to oc cluster up documentation for more prerequisites](https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md)
 
 ## Getting Started
 
