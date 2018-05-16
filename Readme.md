@@ -41,7 +41,7 @@ The `up.sh` script is very basic. It does the following:
 
 * executes `oc cluster up`
 * Creates the Mobile Custom Resource Definition and appropriate roles
-* Deploys the ansible service broker using [`./scripts/provision-ansible-service-broker.sh`](provision-ansible-service-broker)
+* Deploys the ansible service broker using [`./scripts/provision-ansible-service-broker.sh`](./scripts/provision-ansible-service-broker.sh)
 
 ## Local Development of origin-web-console
 
