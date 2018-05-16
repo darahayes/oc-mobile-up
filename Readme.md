@@ -76,3 +76,10 @@ Integrating with running OpenShift
 ```
 export skip_oc_cluster_up=true
 ```
+
+## Troubleshooting
+
+### Docker version on mac
+
+`oc cluster up` command require specific version of docker that is not compatible with latest docker available on mac
+Mac users can get Docker 17 version from here: https://gist.github.com/franklinyu/5e0bb9d6c0d873f33c78415dd2ea4138
