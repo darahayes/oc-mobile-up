@@ -32,7 +32,11 @@ if [ ! "$skip_oc_cluster_up" == "true" ]; then
   --routing-suffix="$cluster_public_ip.nip.io" \
   --public-hostname="$cluster_public_ip" \
   --version="$cluster_version" \
-  --image="$cluster_image"
+  --image="$cluster_image" \
+  --host-config-dir="$__dirname/cluster-data" \
+  --host-data-dir="$__dirname/cluster-data/openshift-data" \
+  --host-pv-dir="$__dirname/cluster-data/openshift-pvs" \
+  --host-volumes-dir="$__dirname/cluster-data/openshift-volumes"
 fi
 
 ## Setup the developer user with the right permissions
