@@ -14,6 +14,7 @@ Befeore running this project you need to do the following:
 * [Install Docker](https://www.docker.com/community-edition)
 * [Create a Dockerhub Account](https://hub.docker.com/)
 * [Install v3.9.0 (or greater) of the OpenShift CLI tool](https://github.com/openshift/origin/releases/tag/v3.9.0)
+* [Refer to oc cluster up documentation for more prerequisites](https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md)
 
 ## Getting Started
 
@@ -46,7 +47,7 @@ The `up.sh` script is very basic. It does the following:
 
 This script does not install a custom version of the origin-web-console. You will probably want run your own version for local development.
 
-Clone the [Aerogear fork](https://github.com/aerogear/origin-web-console) of the origin-web-console.
+Clone the [AeroGear fork](https://github.com/aerogear/origin-web-console) of the origin-web-console.
 
 ```bash
 git clone git@github.com:aerogear/origin-web-console
@@ -67,3 +68,11 @@ grunt serve
 ```
 
 Please consult the [origin-web-console Readme](https://github.com/openshift/origin-web-console) for more info.
+
+## Local Development of origin-web-console
+
+Integrating with running OpenShift 
+
+```
+export skip_oc_cluster_up=true
+```
