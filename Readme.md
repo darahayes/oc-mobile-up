@@ -11,7 +11,7 @@ oc-mobile-up is a quick and easy method for __local development__ of Aerogear Se
 
 Befeore running this project you need to do the following:
 
-* [Instal Docker](https://www.docker.com/community-edition)
+* [Install Docker](https://www.docker.com/community-edition)
 * [Create a Dockerhub Account](https://hub.docker.com/)
 * [Install v3.9.0 (or greater) of the OpenShift CLI tool](https://github.com/openshift/origin/releases/tag/v3.9.0)
 
