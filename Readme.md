@@ -22,7 +22,7 @@ First you must export some environment variables:
 
 ```bash
 export registry_username=<your dockerhub username>
-export registry_password<your dockerhub password>
+export registry_password=<your dockerhub password>
 ```
 
 Then run the script
