@@ -5,6 +5,9 @@ set -e
 
 __dirname="$(cd "$(dirname "$0")" && pwd)"
 
+# remove cluster data in between installs
+rm -rf $__dirname/cluster-data/*
+
 # oc cluster up params
 
 service_catalog="true"
