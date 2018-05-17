@@ -87,14 +87,6 @@ grunt serve
 
 Please consult the [origin-web-console Readme](https://github.com/openshift/origin-web-console) for more info.
 
-## Local Development of origin-web-console
-
-Integrating with running OpenShift 
-
-```bash
-export skip_oc_cluster_up=true
-```
-
 ## Troubleshooting
 
 ### Docker version on Mac OS
