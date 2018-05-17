@@ -14,7 +14,11 @@ service_catalog="true"
 hawkular_metrics="false"
 cluster_image="openshift/origin"
 cluster_version="v3.9.0"
+<<<<<<< HEAD
 cluster_ip=${cluster_ip:-"192.168.99.100"}
+=======
+cluster_public_ip="127.0.0.1"
+>>>>>>> 093364c... fix: crazy idea :)
 cluster_local_instance="yes"
 developer_user=${developer_user:-developer}
 
@@ -32,14 +36,11 @@ fi
 if [ ! "$skip_oc_cluster_up" == "true" ]; then
   oc cluster up \
   --service-catalog="$service_catalog" \
-  --routing-suffix="$cluster_ip.nip.io" \
-  --public-hostname="$cluster_ip" \
+  --routing-suffix="$cluster_public_ip.nip.io" \
+  --public-hostname="$cluster_public_ip.xip.io" \
   --version="$cluster_version" \
-  --image="$cluster_image" \
-  --host-config-dir="$__dirname/cluster-data" \
-  --host-data-dir="$__dirname/cluster-data/openshift-data" \
-  --host-pv-dir="$__dirname/cluster-data/openshift-pvs" \
-  --host-volumes-dir="$__dirname/cluster-data/openshift-volumes"
+  --image="$cluster_image" 
+
 fi
 
 ## Setup the developer user with the right permissions
