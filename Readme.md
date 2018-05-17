@@ -57,7 +57,7 @@ cluster_ip=127.0.0.1 ./up.sh
 
 If you like to start your OpenShift cluster using some other tooling, it is possible to skip the `oc cluster up` command and apply the Mobile specific parts to your cluster. This is for advanced users only. Ensure you specify the correct `cluster_ip`.
 
-```
+```bash
 cluster_ip=<your cluster ip> skip_oc_cluster_up=true ./up.sh
 ```
 
@@ -81,7 +81,7 @@ Now install the console's dependencies. (from within the origin-web-console dire
 
 Now run the console.
 
-```
+```bash
 grunt serve
 ```
 
@@ -91,7 +91,7 @@ Please consult the [origin-web-console Readme](https://github.com/openshift/orig
 
 Integrating with running OpenShift 
 
-```
+```bash
 export skip_oc_cluster_up=true
 ```
 
@@ -110,7 +110,7 @@ Error: timed out waiting for OpenShift container "origin"
 
 If the `oc cluster up` command fails with a similar error, try running the installer again with the ip address `127.0.0.1`.
 
-```
+```bash
 oc cluster down && cluster_ip=127.0.0.1 ./up.sh
 ```
 
