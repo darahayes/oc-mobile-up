@@ -14,7 +14,7 @@ service_catalog="true"
 hawkular_metrics="false"
 cluster_image="openshift/origin"
 cluster_version="v3.9.0"
-cluster_public_ip="192.168.99.100"
+cluster_ip=${cluster_ip:-"192.168.99.100"}
 cluster_local_instance="yes"
 developer_user=${developer_user:-developer}
 
@@ -32,8 +32,8 @@ fi
 if [ ! "$skip_oc_cluster_up" == "true" ]; then
   oc cluster up \
   --service-catalog="$service_catalog" \
-  --routing-suffix="$cluster_public_ip.nip.io" \
-  --public-hostname="$cluster_public_ip" \
+  --routing-suffix="$cluster_ip.nip.io" \
+  --public-hostname="$cluster_ip" \
   --version="$cluster_version" \
   --image="$cluster_image" \
   --host-config-dir="$__dirname/cluster-data" \
@@ -61,7 +61,7 @@ oc adm policy add-cluster-role-to-group mobileclient-admin system:authenticated
 ## Ansible Service Broker Setup
 
 echo "Installing Ansible Service Broker: organisation=$registry_org, container registry username=$registry_username"
-$__dirname/scripts/provision-ansible-service-broker.sh "$registry_username" "$registry_password" "$registry_org" true latest "$cluster_public_ip" nip.io ansible-service-broker
+$__dirname/scripts/provision-ansible-service-broker.sh "$registry_username" "$registry_password" "$registry_org" true latest "$cluster_ip" nip.io ansible-service-broker
 
 oc login -u developer
 oc project myproject
