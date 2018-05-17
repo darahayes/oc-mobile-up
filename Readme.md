@@ -4,7 +4,7 @@ oc-mobile-up is a quick and easy method for __local development__ of Aerogear Se
 
 ## Supported Operating Systems
 
-* Mac Os
+* Mac OS
 * Linux
 
 ## Prerequisites
@@ -42,6 +42,24 @@ The `up.sh` script is very basic. It does the following:
 * executes `oc cluster up`
 * Creates the Mobile Custom Resource Definition and appropriate roles
 * Deploys the ansible service broker using [`./scripts/provision-ansible-service-broker.sh`](./scripts/provision-ansible-service-broker.sh)
+
+## Additional Options
+
+#### `cluster_ip`
+
+It is possible to start the cluster with a different IP address.
+
+```bash
+cluster_ip=127.0.0.1 ./up.sh
+```
+
+#### `skip_oc_cluster_up`
+
+If you like to start your OpenShift cluster using some other tooling, it is possible to skip the `oc cluster up` command and apply the Mobile specific parts to your cluster. This is for advanced users only. Ensure you specify the correct `cluster_ip`.
+
+```
+cluster_ip=<your cluster ip> skip_oc_cluster_up=true ./up.sh
+```
 
 ## Local Development of origin-web-console
 
@@ -81,5 +99,18 @@ export skip_oc_cluster_up=true
 
 ### Docker version on Mac OS
 
-`oc cluster up` command requires a specific version of docker that is not compatible with latest Docker available on Mac OS.
-Mac Os users can get Docker 17 version from here: https://gist.github.com/franklinyu/5e0bb9d6c0d873f33c78415dd2ea4138
+The `oc cluster up` command is incompatible with newer versions of Docker for Mac OS. [Version 17.09.0](https://download.docker.com/mac/stable/19543/Docker.dmg) is recommended.
+
+### Firewall Rules Error (Mac OS)
+
+```
+Error: timed out waiting for OpenShift container "origin"
+  WARNING: 192.168.99.100:8443 may be blocked by firewall rules
+```
+
+If the `oc cluster up` command fails with a similar error, try running the installer again with the ip address `127.0.0.1`.
+
+```
+oc cluster down && cluster_ip=127.0.0.1 ./up.sh
+```
+
