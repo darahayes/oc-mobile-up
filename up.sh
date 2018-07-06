@@ -8,13 +8,15 @@ __dirname="$(cd "$(dirname "$0")" && pwd)"
 # remove cluster data in between installs
 rm -rf $__dirname/cluster-data/*
 
+default_ip=$(ifconfig $(netstat -nr | awk '{if (($1 == "0.0.0.0" || $1 == "default") && $2 != "0.0.0.0" && $2 ~ /[0-9\.]+{4}/){print $NF;} }' | head -n1) | grep 'inet ' | awk '{print $2}')
+
 # oc cluster up params
 
 service_catalog="true"
 hawkular_metrics="false"
 cluster_image="openshift/origin"
 cluster_version="v3.9.0"
-cluster_ip=${cluster_ip:-"192.168.99.100"}
+cluster_ip=${cluster_ip:-$default_ip}
 cluster_local_instance="yes"
 developer_user=${developer_user:-developer}
 
