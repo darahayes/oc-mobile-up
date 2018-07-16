@@ -19,6 +19,7 @@ cluster_version="v3.9.0"
 cluster_ip=${cluster_ip:-$default_ip}
 cluster_local_instance="yes"
 developer_user=${developer_user:-developer}
+console_image=aerogear/origin-web-console:1.0.0-alpha
 
 # Registry Configs for Ansible Service Broker
 
@@ -49,6 +50,10 @@ fi
 oc login -u system:admin
 oc adm policy add-cluster-role-to-user cluster-admin $developer_user
 oc adm policy add-cluster-role-to-user access-asb-role $developer_user
+
+# Use the Aerogear Version of the web console
+echo "Patching Openshift Origin Console Deployment with Aerogear Image"
+oc patch deployment webconsole -n openshift-web-console -p "{\"spec\": {\"template\": {\"spec\": {\"containers\": [{\"name\": \"webconsole\", \"image\": \"$console_image\", \"imagePullPolicy\": \"Always\"}]}}}}"
 
 ## Mobile Client Custom Resource Definition Setup
 
