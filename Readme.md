@@ -11,7 +11,7 @@ oc-mobile-up is a quick and easy method for __local development__ of Aerogear Se
 
 Befeore running this project you need to do the following:
 
-* [Install Docker](https://www.docker.com/community-edition)
+* [Install Docker Version 17.09.0](https://download.docker.com/mac/stable/19543/Docker.dmg)
 * [Create a Dockerhub Account](https://hub.docker.com/)
 * [Install v3.9.0 (or greater) of the OpenShift CLI tool](https://github.com/openshift/origin/releases/tag/v3.9.0)
 * [Refer to oc cluster up documentation for more prerequisites](https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md)
@@ -31,7 +31,13 @@ Then run the script
 ./up.sh
 ```
 
-If the script is successful, The OpenShift console is available at [https://192.168.99.100:8443](https://192.168.99.100:8443).
+If the script is successful, You will see some out put similar to that shown below.
+
+```
+Now using project "myproject" on server "https://10.32.241.80:8443".
+```
+
+The OpenShift instance will be running on your host machine's local IP address.
 
 **Note that you may not instantly see the mobile services** in the service catalog as it takes 1-2 minutes for the ansible-service-broker to become ready.
 
@@ -39,19 +45,12 @@ If the script is successful, The OpenShift console is available at [https://192.
 
 The `up.sh` script is very basic. It does the following:
 
-* executes `oc cluster up`
+* Executes `oc cluster up`
 * Creates the Mobile Custom Resource Definition and appropriate roles
+* Replaces the standard OpenShift Origin Console with the [Aerogear version](https://github.com/aerogear/origin-web-console).
 * Deploys the ansible service broker using [`./scripts/provision-ansible-service-broker.sh`](./scripts/provision-ansible-service-broker.sh)
 
 ## Additional Options
-
-#### `cluster_ip`
-
-It is possible to start the cluster with a different IP address.
-
-```bash
-cluster_ip=127.0.0.1 ./up.sh
-```
 
 #### `skip_oc_cluster_up`
 
@@ -63,7 +62,7 @@ cluster_ip=<your cluster ip> skip_oc_cluster_up=true ./up.sh
 
 ## Local Development of origin-web-console
 
-This script does not install a custom version of the origin-web-console. You will probably want run your own version for local development.
+The script does install the Aerogear version of the web console (using a Docker image). However, at some point you will probably want run your own version for local development.
 
 Clone the [AeroGear fork](https://github.com/aerogear/origin-web-console) of the origin-web-console.
 
@@ -86,23 +85,4 @@ grunt serve
 ```
 
 Please consult the [origin-web-console Readme](https://github.com/openshift/origin-web-console) for more info.
-
-## Troubleshooting
-
-### Docker version on Mac OS
-
-The `oc cluster up` command is incompatible with newer versions of Docker for Mac OS. [Version 17.09.0](https://download.docker.com/mac/stable/19543/Docker.dmg) is recommended.
-
-### Firewall Rules Error (Mac OS)
-
-```
-Error: timed out waiting for OpenShift container "origin"
-  WARNING: 192.168.99.100:8443 may be blocked by firewall rules
-```
-
-If the `oc cluster up` command fails with a similar error, try running the installer again with the ip address `127.0.0.1`.
-
-```bash
-oc cluster down && cluster_ip=127.0.0.1 ./up.sh
-```
 
